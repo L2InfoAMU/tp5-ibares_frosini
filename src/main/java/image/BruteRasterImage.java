@@ -1,8 +1,6 @@
 package image;
 
 import javafx.scene.paint.Color;
-import java.util.Arrays;
-import static java.util.Arrays.*;
 import static util.Matrices.*;
 
 
@@ -13,7 +11,8 @@ public class BruteRasterImage implements Image {
     Color [][] colors;
 
     public BruteRasterImage (Color color, int width, int height){
-        this.width = width;
+        setWidth(width);
+        setHeight(height);
         this.height = height;
         createRepresentation();
         for (int i = 0; i < this.width; i++){
@@ -28,8 +27,8 @@ public class BruteRasterImage implements Image {
         requiresNonNull(colors);
         requiresNonZeroDimensions(colors);
         requiresRectangularMatrix(colors);
-        this.width = getRowCount(colors);
-        this.height = getColumnCount(colors);
+        setWidth(getRowCount(colors));
+        setHeight(getColumnCount(colors));
         createRepresentation();
         for (int i = 0; i < this.width; i++){
             for (int j = 0; j < this.height; j++){
@@ -66,6 +65,16 @@ public class BruteRasterImage implements Image {
                 this.colors[i][j] = color;
             }
         }
+    }
+
+    protected void setWidth(int width){
+
+        this.width = width;
+    }
+
+    protected void setHeight(int height){
+
+        this.height = height;
     }
 
     @Override
