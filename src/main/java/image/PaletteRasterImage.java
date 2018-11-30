@@ -1,18 +1,23 @@
 package image;
 
 import javafx.scene.paint.Color;
+
+import java.util.ArrayList;
+
 import static util.Matrices.*;
 
 public class PaletteRasterImage implements Image {
     int width;
     int height;
     Color [][] colors;
+    ArrayList<Color> palette;
 
     public PaletteRasterImage (Color color, int width, int height){
         setWidth(width);
         setHeight(height);
         this.height = height;
         createRepresentation();
+        palette.add(color);
         for (int i = 0; i < this.width; i++){
             for (int j =0; j < this.height; j++){
                 this.colors[i][j] = color;
@@ -30,6 +35,9 @@ public class PaletteRasterImage implements Image {
         createRepresentation();
         for (int i = 0; i < this.width; i++){
             for (int j = 0; j < this.height; j++){
+                if (!palette.contains(colors[i][j])){
+                    palette.add(colors[i][j]);
+                }
                 this.colors[i][j] = colors[i][j];
             }
         }
@@ -40,10 +48,13 @@ public class PaletteRasterImage implements Image {
     public void createRepresentation () {
 
         this.colors = new Color[this.width][this.height];
+        this.palette = new ArrayList<Color>();
     }
 
     public void setPixelColor(Color color, int x, int y){
-
+        if (!palette.contains(color)){
+            palette.add(color);
+        }
         this.colors[x][y] = color;
     }
 
@@ -51,6 +62,9 @@ public class PaletteRasterImage implements Image {
 
         for (int i = 0; i < this.width; i++){
             for (int j = 0; j < this.height; j++) {
+                if (!palette.contains(colors[i][j])){
+                    palette.add(colors[i][j]);
+                }
                 this.colors[i][j] = pixels[i][j];
             }
         }
@@ -60,6 +74,9 @@ public class PaletteRasterImage implements Image {
 
         for (int i = 0; i < this.width; i++){
             for (int j = 0; j < this.height; j++) {
+                if (!palette.contains(colors[i][j])){
+                    palette.add(colors[i][j]);
+                }
                 this.colors[i][j] = color;
             }
         }
