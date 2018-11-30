@@ -3,21 +3,19 @@ package image;
 import javafx.scene.paint.Color;
 import static util.Matrices.*;
 
-
-public class BruteRasterImage implements Image {
+abstract class RasterImage implements Image {
 
     int width;
     int height;
-    Color [][] colors;
 
-    public BruteRasterImage (Color color, int width, int height){
+    public RasterImage (Color color, int width, int height){
         setWidth(width);
         setHeight(height);
         createRepresentation();
         setPixelsColor(color);
     }
 
-    public BruteRasterImage (Color[][] colors){
+    public RasterImage (Color[][] colors){
 
         requiresNonNull(colors);
         requiresNonZeroDimensions(colors);
@@ -27,18 +25,11 @@ public class BruteRasterImage implements Image {
         createRepresentation();
         setPixelsColor(colors);
 
-
     }
 
-    public void createRepresentation () {
+    public abstract void setPixelColor(Color color, int x, int y);
 
-        this.colors = new Color[this.width][this.height];
-    }
-
-    public void setPixelColor(Color color, int x, int y){
-
-        this.colors[x][y] = color;
-    }
+    public abstract void createRepresentation ();
 
     private void setPixelsColor(Color[][] pixels){
 
@@ -58,6 +49,7 @@ public class BruteRasterImage implements Image {
         }
     }
 
+
     protected void setWidth(int width){
 
         this.width = width;
@@ -68,11 +60,8 @@ public class BruteRasterImage implements Image {
         this.height = height;
     }
 
-    @Override
-    public Color getPixelColor(int x, int y) {
 
-        return colors[x][y];
-    }
+
 
     @Override
     public int getWidth() {
@@ -85,4 +74,5 @@ public class BruteRasterImage implements Image {
 
         return this.height;
     }
+
 }
