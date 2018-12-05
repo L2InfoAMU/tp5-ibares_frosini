@@ -1,0 +1,42 @@
+package image;
+
+import javafx.scene.paint.Color;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class VectorImage implements Image {
+
+    List<Shape> shapes;
+    private int width;
+    private int height;
+
+    public VectorImage (List<Shape>shapes, int width, int height){
+        this.shapes = new ArrayList<>(shapes);
+        setWidth(width);
+        setHeight(height);
+    }
+
+    @Override
+    public Color getPixelColor(int x, int y) {
+
+    }
+
+    @Override
+    public int getWidth() {
+        return this.width;
+    }
+
+    @Override
+    public int getHeight() {
+        return this.height;
+    }
+
+    public void setHeight(int height) {
+        this.height = height;
+    }
+
+    public void setWidth(int width) {
+        this.width = width;
+    }
+}
