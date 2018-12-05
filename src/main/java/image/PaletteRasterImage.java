@@ -21,7 +21,7 @@ public class PaletteRasterImage extends RasterImage {
     public void createRepresentation () {
 
         this.imagecolors = new int[this.width][this.height];
-        this.palette = new ArrayList<Color>();
+        this.palette = new ArrayList<>();
     }
 
     public void setPixelColor(Color color, int x, int y){
