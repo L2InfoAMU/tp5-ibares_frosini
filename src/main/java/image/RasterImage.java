@@ -31,6 +31,8 @@ abstract class RasterImage implements Image {
 
     public abstract void createRepresentation ();
 
+    public abstract Color getPixelColor(int x, int y);
+
     private void setPixelsColor(Color[][] pixels){
 
         for (int i = 0; i < this.width; i++){
