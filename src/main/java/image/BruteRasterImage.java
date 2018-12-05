@@ -1,34 +1,22 @@
 package image;
 
 import javafx.scene.paint.Color;
-import static util.Matrices.*;
 
 
-public class BruteRasterImage implements Image {
 
-    int width;
-    int height;
+public class BruteRasterImage extends RasterImage {
+
     Color [][] colors;
 
-    public BruteRasterImage (Color color, int width, int height){
-        setWidth(width);
-        setHeight(height);
-        createRepresentation();
-        setPixelsColor(color);
+    public BruteRasterImage(Color color, int width, int height) {
+        super(color, width, height);
     }
 
-    public BruteRasterImage (Color[][] colors){
-
-        requiresNonNull(colors);
-        requiresNonZeroDimensions(colors);
-        requiresRectangularMatrix(colors);
-        setWidth(getRowCount(colors));
-        setHeight(getColumnCount(colors));
-        createRepresentation();
-        setPixelsColor(colors);
-
-
+    public BruteRasterImage(Color[][] colors) {
+        super(colors);
     }
+
+
 
     public void createRepresentation () {
 
@@ -40,33 +28,6 @@ public class BruteRasterImage implements Image {
         this.colors[x][y] = color;
     }
 
-    private void setPixelsColor(Color[][] pixels){
-
-        for (int i = 0; i < this.width; i++){
-            for (int j = 0; j < this.height; j++) {
-                setPixelColor(pixels[i][j],i,j);
-            }
-        }
-    }
-
-    private void setPixelsColor(Color color){
-
-        for (int i = 0; i < this.width; i++){
-            for (int j = 0; j < this.height; j++) {
-                setPixelColor(color,i,j);
-            }
-        }
-    }
-
-    protected void setWidth(int width){
-
-        this.width = width;
-    }
-
-    protected void setHeight(int height){
-
-        this.height = height;
-    }
 
     @Override
     public Color getPixelColor(int x, int y) {
@@ -74,15 +35,5 @@ public class BruteRasterImage implements Image {
         return colors[x][y];
     }
 
-    @Override
-    public int getWidth() {
 
-        return this.width;
-    }
-
-    @Override
-    public int getHeight() {
-
-        return this.height;
-    }
 }

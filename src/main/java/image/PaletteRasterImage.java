@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 
 public class PaletteRasterImage extends RasterImage {
-    int [][] colors;
+    int [][] imagecolors;
     ArrayList<Color> palette;
 
     public PaletteRasterImage(Color color, int width, int height) {
@@ -20,7 +20,7 @@ public class PaletteRasterImage extends RasterImage {
 
     public void createRepresentation () {
 
-        this.colors = new int[this.width][this.height];
+        this.imagecolors = new int[this.width][this.height];
         this.palette = new ArrayList<Color>();
     }
 
@@ -28,12 +28,12 @@ public class PaletteRasterImage extends RasterImage {
         if (!palette.contains(color)){
             palette.add(color);
         }
-        this.colors[x][y] = palette.indexOf(color);
+        this.imagecolors[x][y] = palette.indexOf(color);
     }
 
     public Color getPixelColor(int x, int y) {
 
-        return palette.get(colors[x][y]);
+        return palette.get(imagecolors[x][y]);
     }
 
 
