@@ -20,6 +20,7 @@ public class Display implements Initializable {
 
     private Image image;
     private ImageFactory imageFactory;
+    private LogoLISFactory logoLISFactory;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -28,11 +29,14 @@ public class Display implements Initializable {
                 200, Color.RED, RasterImageType.PALETTE);
         */
 
-        imageFactory = new RasterFlagFactory(900, 600,
+        /*imageFactory = new RasterFlagFactory(900, 600,
                 Color.BLUE, Color.WHITE, Color.RED, RasterImageType.SPARSE);
+        */
+
+        logoLISFactory = new LogoLISFactory();
 
 
-        this.image = imageFactory.makeImage();
+        this.image = logoLISFactory.makeImage();
 
         render();
     }
