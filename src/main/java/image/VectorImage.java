@@ -1,13 +1,12 @@
 package image;
 
 import javafx.scene.paint.Color;
-
 import java.util.ArrayList;
 import java.util.List;
 
 public class VectorImage implements Image {
 
-    List<Shape> shapes;
+    private List<Shape> shapes;
     private int width;
     private int height;
 
@@ -24,7 +23,7 @@ public class VectorImage implements Image {
     public Color getPixelColor(int x, int y) {
 
         Point toSearch = new Point (x,y);
-        for (Shape shape : shapes){
+        for (Shape shape : this.shapes){
             if (shape.contains(toSearch)){
                 return shape.getColor();
             }
